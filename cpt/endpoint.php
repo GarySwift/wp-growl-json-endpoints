@@ -10,12 +10,14 @@ function wp_growl_register_cpt_endpoint() {
 		"singular_name" => __( "Endpoint", "wp_growl" ),
 	);
 
+	$show = true;
+
 	$args = array(
 		"label" => __( "Endpoints", "wp_growl" ),
 		"labels" => $labels,
 		"description" => "",
-		"public" => false,
-		"publicly_queryable" => false,
+		"public" => $show,
+		"publicly_queryable" => $show,
 		"show_ui" => true,
 		"delete_with_user" => false,
 		"show_in_rest" => false,

@@ -17,11 +17,12 @@ define('WP_GROWL_ENDPOINTS_DIR', '/endpoints/');
 /**
  * Include files
  */
+require_once plugin_dir_path( __FILE__ ) . 'cpt/endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'acf/endpoint-fields.php';
 require_once plugin_dir_path( __FILE__ ) . 'posts-screen-columns/endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'cron.php';
+require_once plugin_dir_path( __FILE__ ) . 'get-json.php';
 require_once plugin_dir_path( __FILE__ ) . 'class-wp-growl-json-endpoint-manager.php';
-
 
 /**
  * save_post hook that adds default taxonomy and saves the processed ACF form data into FormBuilder data
@@ -34,6 +35,24 @@ function wp_growl_save_post_endpoint($post_id) {
 }
 add_action( 'save_post', 'wp_growl_save_post_endpoint' );
 
+
+/**
+ * Filter to add template for single endpoints
+ * 
+ * @author      Gary Swift <garyswiftmail@gmail.com>
+ *
+ * @since       1.0
+ */
+add_filter('template_include', 'wp_growl_plugin_templates');
+function wp_growl_plugin_templates( $template ) {
+    $post_types = array('endpoint');
+
+    if (is_singular($post_types)) {
+        $template = plugin_dir_path( __FILE__ ) . 'single-endpoint.php';
+    }
+
+    return $template;
+}
 /**
  * Init WP_Growl_Json_Endpoint_Manager
  *

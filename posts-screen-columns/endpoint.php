@@ -10,19 +10,21 @@
  */
 function manage_columns_for_endpoint($columns) {
 	unset($columns['date']);
-	$columns['url'] = 'URL';
+	$columns['url'] = 'Source URL';
 	$columns['updated'] = 'Updated';
     $columns['date'] = _x('Date', 'column name');
     return $columns;
 }
 function populate_endpoint_columns($column, $post_id) {
     if($column == 'url'){
+		$post = get_post($post_id); 
+		$slug = $post->post_name;    	
 	    if ($url = get_field('url')) {
 	     	echo $url;
 	    }
 	    else {
 	    	echo "-";
-	    }         
+	    }   
     }
     elseif($column == 'updated'){
 		if ($file_name = get_field('file_name')) {
