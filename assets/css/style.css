@@ -1,0 +1,9 @@
+#endpoint_post_id, td.endpoint_post_id {
+	width: 100px;
+}
+#endpoint_updated, td.endpoint_updated {
+	width: 100px;
+}
+#cron_frequency, td.cron_frequency {
+	width: 100px;
+}

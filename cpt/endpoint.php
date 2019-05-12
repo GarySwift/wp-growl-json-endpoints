@@ -40,4 +40,4 @@ function wp_growl_register_cpt_endpoint() {
 	register_post_type( "endpoint", $args );
 }
 
-add_action( 'init', 'wp_growl_register_cpt_endpoint' );
+// add_action( 'init', 'wp_growl_register_cpt_endpoint' );

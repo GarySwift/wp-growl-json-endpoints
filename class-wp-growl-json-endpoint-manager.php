@@ -24,7 +24,7 @@ class WP_Growl_Json_Endpoint_Manager {
 		curl_close($ch);
 		// Test if json if valid before saving to file
 		if ( $endpoint_data = $this->validate_json($result) ) {	
-			$this->save_json_to_file($endpoint_data, $post_id);
+			$this->save_json_to_file($endpoint_data, $this->post_id);
 		}
 	}
 
@@ -42,7 +42,16 @@ class WP_Growl_Json_Endpoint_Manager {
 	    if ( $json = json_encode($endpoint_data, JSON_PRETTY_PRINT) ) {
 		    $upload_dir = wp_upload_dir();
 		    $file_path = $upload_dir["basedir"].WP_GROWL_ENDPOINTS_DIR;
-		    $file_name = get_post_field( 'post_name', $post_id ).'.json';;
+		    $slug = get_post_field( 'post_name', $post_id );
+		    if ( $slug ) {
+		    	$file_name = $slug.'.json';
+		    }
+		    elseif( $post = get_post($post_id) && isset($post["post_name"]) ) {
+		    	$file_name = $post["post_name"].'.json';
+		    }
+		    else {
+		    	$file_name = $post_id.'.json';
+		    }
 		    $file = $file_path.$file_name;
 		    if (!file_exists($file_path)) {
 		        mkdir($file_path, 0777, true);

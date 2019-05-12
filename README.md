@@ -11,6 +11,16 @@
 ## Features
 Allows users attach URL a custom post type which is used to retrieve data and and save it as a JSON file.
 
+
+## Usage
+```php
+
+$data_array = wp_growl_get_endpoint_array( $post_id );
+
+$data_json = wp_growl_get_endpoint_json( $post_id );
+
+```
+
 ## Licence
 This project is licensed under the MIT license.
 

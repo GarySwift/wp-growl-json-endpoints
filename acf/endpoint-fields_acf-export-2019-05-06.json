@@ -34,7 +34,7 @@
                 },
                 "choices": {
                     "hourly": "Hourly",
-                    "twice_daily": "Twice Daily",
+                    "twicedaily": "Twice Daily",
                     "daily": "Daily"
                 },
                 "default_value": [
